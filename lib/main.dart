@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
 
-void main(){
+import 'package:flutter/material.dart';
+
+void main() {
   return runApp(
     MaterialApp(
       home: Scaffold(
@@ -16,11 +17,45 @@ void main(){
   );
 }
 
-class Ask extends StatefulWidget{
-  @override()
-  _Ask CreateState() => Ask(),
+class Ask extends StatefulWidget {
+
+  @override
+  State<Ask> createState() => _Ask();
 }
 
-class _Ask extends State<DicePage>{
-  int NumberBall = 1,
+class _Ask extends State<Ask> {
+  int numberBall = 1;
+
+  void _clik() {
+    setState((){
+      var random = new Random();
+        numberBall = random.nextInt(5) +1;
+    },);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+    return Container(
+      child: Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: TextButton(
+                onPressed: (){
+                  _clik();
+                },
+                child: Image.asset(
+                  'images/ball$numberBall.png',
+                    width: deviceWidth * 0.70,
+                    height: deviceHeight * 0.70,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
